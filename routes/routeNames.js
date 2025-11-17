@@ -117,12 +117,14 @@ import robots_site from "./controllers/website/robotData.js";
 import sitemap_site from "./controllers/website/sitemapData.js";
 
 import blog_data_site from "./controllers/website/blogData.js";
+import blog_detail_site from "./controllers/website/blogDetailData.js";
 import category_data_site from "./controllers/website/categoryData.js";
 import media_data_site from "./controllers/website/mediaData.js";
 
 ///////////  all routes for website  //////////////////////////////
 
 router.get("/site/blog", blog_data_site);
+router.get("/site/blog/:slug", blog_detail_site);
 router.get("/site/category", category_data_site);
 router.get("/site/media", media_data_site);
 router.all("/user/messages", user_messages); //// for post request { name,email,phone,message}   should be sent  ////////
