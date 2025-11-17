@@ -7,44 +7,44 @@ import checkUser from "../middleware/checkUser.js";
 
 import exchangeToken from "./controllers/exchangeToken.js";
 
-//////   file import for api ///////////   admin import    ////////////////////
-import user_signup from "./controllers/userSignup.js";
-import user_login from "./controllers/userLogin.js";
-import user_dashboard from "./controllers/getDashBoardData.js";
+//////   file import for api ///////////   admin import   ////////////////////
 import auth_token from "./controllers/authToken.js";
+import user_dashboard from "./controllers/getDashBoardData.js";
+import user_login from "./controllers/userLogin.js";
+import user_signup from "./controllers/userSignup.js";
 
 import blog_data from "./controllers/blogData.js";
 import category_data from "./controllers/categoryData.js";
 import media_data from "./controllers/userMedia.js";
 
-import delete_media from "./controllers/deleteMedia.js";
 import delete_blog from "./controllers/deleteBlog.js";
 import delete_category from "./controllers/deleteCategory.js";
+import delete_media from "./controllers/deleteMedia.js";
 import edit_blog from "./controllers/editBlog.js";
 import edit_category from "./controllers/editCategory.js";
-import user_setting from "./controllers/userSetting.js";
-import edit_media from "./controllers/editMedia.js";
 import edit_color from "./controllers/editColor.js";
+import edit_media from "./controllers/editMedia.js";
+import user_setting from "./controllers/userSetting.js";
 
-import user_slug from "./controllers/userSlug.js";
 import user_public_logo from "./controllers/userPublicLogo.js";
+import user_slug from "./controllers/userSlug.js";
 
 import {
   canonical,
-  sitemap,
   robots,
+  sitemap,
 } from "./controllers/robotSitemapCanonical.js";
 
 import user_messages from "./controllers/userMessages.js";
 
+import user_email from "./controllers/userEmail.js";
 import user_logo from "./controllers/userLogo.js";
 import user_name from "./controllers/userName.js";
-import user_email from "./controllers/userEmail.js";
 import user_password from "./controllers/userPassword.js";
 
+import send_email from "./controllers/sendEmail.js";
 import user_otp_once from "./controllers/userOtp.js";
 import user_otp_check_and_set_password from "./controllers/userOtpCheckAndSetPassword.js";
-import send_email from "./controllers/sendEmail.js";
 
 import auth_google from "./controllers/authGoogle.js";
 import auth_google_callback from "./controllers/authGoogleCallback.js";
@@ -108,19 +108,19 @@ router.post("/email/sent/check", checkUser, send_email);
 //////////////////// public logo //////////
 router.get("/user/public/logo", user_public_logo);
 
-///////////  all routes for admin         //////////////////////////////
+///////////  all routes for admin     //////////////////////////////
 
 ///////////////// website import    ///////////////////////////
 
-import blog_data_site from "./controllers/website/blogData.js";
+import canonical_site from "./controllers/website/canonicalData.js";
 import robots_site from "./controllers/website/robotData.js";
 import sitemap_site from "./controllers/website/sitemapData.js";
-import canonical_site from "./controllers/website/canonicalData.js";
 
+import blog_data_site from "./controllers/website/blogData.js";
 import category_data_site from "./controllers/website/categoryData.js";
 import media_data_site from "./controllers/website/mediaData.js";
 
-///////////  all routes for website         //////////////////////////////
+///////////  all routes for website  //////////////////////////////
 
 router.get("/site/blog", blog_data_site);
 router.get("/site/category", category_data_site);

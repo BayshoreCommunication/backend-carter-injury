@@ -1,10 +1,10 @@
 // Imports
+import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import http from "http";
-import dotenv from "dotenv";
-import cors from "cors";
-import router from "./routes/routeNames.js";
 import connectDB from "./database/connection.js";
+import router from "./routes/routeNames.js";
 
 // Configurations
 dotenv.config();
@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-// Database connection
 connectDB();
 
 //test Routes
