@@ -1,5 +1,5 @@
 import Blog from "../../../database/models/Blog.js";
-import { convertImageObjectToWebP } from "../../../utils/imageConverter.js";
+import { convertImageObjectToWebP, convertHtmlImagesToWebP } from "../../../utils/imageConverter.js";
 
 const blog_data_site = async (req, res) => {
   try {
@@ -26,15 +26,21 @@ const blog_data_site = async (req, res) => {
       .skip(skip)
       .limit(limit);
 
-    // Convert featured images to WebP format
+    // Convert featured images and body images to WebP format
     const blogsWithWebP = await Promise.all(
       blogs.map(async (blog) => {
         const blogObj = blog.toObject();
 
+        // Convert featured image to WebP
         if (blogObj.featuredImage && blogObj.featuredImage.image) {
           blogObj.featuredImage.image = await convertImageObjectToWebP(
             blogObj.featuredImage.image
           );
+        }
+
+        // Convert all images in body HTML to WebP
+        if (blogObj.body) {
+          blogObj.body = await convertHtmlImagesToWebP(blogObj.body);
         }
 
         return blogObj;

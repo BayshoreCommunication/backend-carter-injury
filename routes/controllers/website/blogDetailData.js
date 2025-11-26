@@ -1,4 +1,5 @@
 import Blog from "../../../database/models/Blog.js";
+import { convertImageObjectToWebP, convertHtmlImagesToWebP } from "../../../utils/imageConverter.js";
 
 const blog_detail_site = async (req, res) => {
   try {
@@ -15,7 +16,22 @@ const blog_detail_site = async (req, res) => {
       return res.status(404).json({ error: "Blog not found" });
     }
 
-    return res.status(200).json({ data: blog });
+    // Convert blog to object
+    const blogObj = blog.toObject();
+
+    // Convert featured image to WebP
+    if (blogObj.featuredImage && blogObj.featuredImage.image) {
+      blogObj.featuredImage.image = await convertImageObjectToWebP(
+        blogObj.featuredImage.image
+      );
+    }
+
+    // Convert all images in body HTML to WebP
+    if (blogObj.body) {
+      blogObj.body = await convertHtmlImagesToWebP(blogObj.body);
+    }
+
+    return res.status(200).json({ data: blogObj });
   } catch (e) {
     return res.status(400).json({ error: e.message || e });
   }
